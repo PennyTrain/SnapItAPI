@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 STATUS = ((0, "Draft"), (1, "Posted"))
 
 class Snap(models.Model):
+
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
