@@ -3,6 +3,15 @@ from .models import Snap
 
 
 class SnapSerializer(serializers.ModelSerializer):
+    """
+    SnapSerializer class defines a serializer for the Snap model, 
+    with fields such as owner, is_owner, profile_id, and profile_image.
+    A custom method get_is_owner is used to determine if the 
+    requesting user is the owner of the snap. Additionally, it contains a 
+    validate_image method to validate the size and dimensions of the uploaded 
+    image. Finally, the class Meta specifies the model and fields to include 
+    in the serialization.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')

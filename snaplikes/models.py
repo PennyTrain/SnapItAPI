@@ -5,7 +5,9 @@ from snaps.models import Snap
 # Create your models here.
 class SnapLike(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    snap = models.ForeignKey(Snap, related_name="snaplikes", on_delete=models.CASCADE)
+    snap = models.ForeignKey(Snap, 
+                             related_name="snaplikes",
+                             on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
