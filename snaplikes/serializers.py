@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Like
+from .models import SnapLike
 
-class LikeSerializer(serializers.ModelSerializer):
+class SnapLikeSerializer(serializers.ModelSerializer):
     owner= serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Like
+        model = SnapLike
         fields = ['id', 'created', 'owner', 'snap']
