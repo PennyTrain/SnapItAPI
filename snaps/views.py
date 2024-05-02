@@ -46,7 +46,7 @@ class SnapDetail(APIView):
         and serializes it using the SnapSerializer, ensuring the request context 
         is included. It then returns the serialized data in the response.
         """
-        snap = self.get_snap(pk)
+        snap = self.get_object(pk)
         serializer = SnapSerializer(
             snap, context={'request': request}
         )

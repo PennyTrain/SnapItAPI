@@ -14,3 +14,21 @@ class SnapCommentSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     created = serializers.SerializerMethodField()
     updated = serializers.SerializerMethodField()
+
+    def get_is_owner(self,obj):
+        request = self.context['request']
+        return request.user == obj.owner
+    
+    def get_created(self, obj):
+        return naturaltime(obj.created)
+    
+    def get_updated(sekf, obj):
+        return naturaltime(obj.updated)
+    
+
+    class Meta:
+        model = SnapComment
+        fields = [
+            'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
+            'snap', 'created', 'updated', 'body', 'title'
+        ]
