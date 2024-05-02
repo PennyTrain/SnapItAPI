@@ -32,3 +32,6 @@ class SnapCommentSerializer(serializers.ModelSerializer):
             'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
             'snap', 'created', 'updated', 'body', 'title'
         ]
+
+class SnapCommentDetailSerializer(serializers.ModelSerializer):
+    snap = serializers.ReadOnlyField(source="snap.id")

@@ -26,7 +26,7 @@ class SnapDetail(APIView):
     serializer_class = SnapSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
-    def get_snap(self, pk):
+    def get_object(self, pk):
         """
         This retrieves a Snap from the database 
         based on the provided primary key and checks the 
@@ -63,7 +63,7 @@ class SnapDetail(APIView):
         # If there are validation errors, it returns an error response with 
         # the serializer errors and a status code indicating a bad request.
         # """
-        snap = self.get_snap(pk)
+        snap = self.get_object(pk)
         serializer = SnapSerializer(
             snap, 
             data=request.data, 

@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('', include('snaps.urls')),
     path('', include('snaplikes.urls')),
+    path('', include('snap_comments.urls')),
 ]
