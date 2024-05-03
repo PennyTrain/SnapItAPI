@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('', include('snaps.urls')),
     path('', include('snaplikes.urls')),
     path('', include('snap_comments.urls')),
+    path('', include('friendships.urls')),
 ]
