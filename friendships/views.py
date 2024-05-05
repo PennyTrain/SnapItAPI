@@ -1,45 +1,28 @@
-from rest_framework import status
-from rest_framework.response import Response
+from rest_framework import generics
 from .models import SnapFriendship
 from .serializers import SnapFriendshipSerializer
-from rest_framework.views import APIView
-from django.http import Http404
+from snap_it.permissions import IsOwnerOrReadOnly
 
 
-class SnapFriendshipList(APIView):
-    def get(self, request):
-        friendships = SnapFriendship.objects.all()
-        serializer = SnapFriendshipSerializer(friendships, many=True)
-        return Response(serializer.data)
+class SnapFriendshipList(generics.ListCreateAPIView):
+    """
+    Handles listing and creation of SnapFriendships.
+    """
+    serializer_class = SnapFriendshipSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
-    def post(self, request):
-        serializer = SnapFriendshipSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        return SnapFriendship.objects.all()
 
-class SnapFriendshipDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return SnapFriendship.objects.get(pk=pk)
-        except SnapFriendship.DoesNotExist:
-            raise Http404
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-    def get(self, request, pk):
-        friendship = self.get_object(pk)
-        serializer = SnapFriendshipSerializer(friendship)
-        return Response(serializer.data)
 
-    def put(self, request, pk):
-        friendship = self.get_object(pk)
-        serializer = SnapFriendshipSerializer(friendship, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        friendship = self.get_object(pk)
-        friendship.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class SnapFriendshipDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Used for retrieving, updating, and deleting individual SnapFriendships.
+    Users can only access their own SnapFriendships.
+    """
+    serializer_class = SnapFriendshipSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = SnapFriendship.objects.all()
