@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Snap
-
+from snaplikes.models import SnapLike
 
 class SnapSerializer(serializers.ModelSerializer):
     """
@@ -16,6 +16,17 @@ class SnapSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
+    snaplike_id = serializers.SerializerMethodField()
+
+    def get_snaplike_id(self,obj):
+        user = self.context['request'].user
+        if user.is_authenticated():
+            snaplikes = SnapLike.objects.filter(
+                owner=user, snap=obj
+            ).first()
+            return snaplikes.id if snaplikes else None
+        return None
+
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -40,5 +51,6 @@ class SnapSerializer(serializers.ModelSerializer):
             'id', 'owner', 'is_owner',
             'profile_id', 'profile_image', 
             'created', 'updated', 'title', 
-            'body', 'featured_image', 'status'
+            'body', 'featured_image', 'status',
+            'snaplike_id'
             ]

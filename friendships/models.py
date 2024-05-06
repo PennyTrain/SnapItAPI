@@ -10,4 +10,4 @@ class SnapFriendship(models.Model):
         unique_together = ['owner', 'friended']
 
     def __str__(self):
-        return str(self.owner) + ' | ' + str(self.friended)
+        return f'{self.owner.username} - {self.friended.username}'
