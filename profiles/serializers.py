@@ -18,10 +18,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_friendship_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
-            friendship = SnapFriendship.objects.filter(
+            friended = SnapFriendship.objects.filter(
                 owner=user, friended=obj.owner
             ).first()
-            return friendship.id if friendship else None
+            return friended.id if friended else None
         return None 
 
     class Meta:

@@ -9,7 +9,7 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
         snaps_count=Count('owner__snap', distinct=True),
         friended_count=Count('owner__friended', distinct=True),
-        # following_count=Count('owner__following', distinct=True)
+        friendship_count=Count('owner__friended__friended', distinct=True)  # Access SnapFriendship through User
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
     filter_backends = [
@@ -18,11 +18,10 @@ class ProfileList(generics.ListAPIView):
     ordering_fields = [
         'snaps_count',
         'friended_count',
-        # 'following_count',
-        # 'owner__following__created_at',
-        'owner__friended__created_at',
+        'friendship_count',
+        'owner__friended__friended__created_at',  # Ordering by friendship creation date
+        'owner__friended__created_at',  # Ordering by friended creation date
     ]
-
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
@@ -32,6 +31,6 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.annotate(
         snaps_count=Count('owner__snap', distinct=True),
         friended_count=Count('owner__friended', distinct=True),
-        # following_count=Count('owner__following', distinct=True)
+        friendship_count=Count('owner__friended__friended', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer

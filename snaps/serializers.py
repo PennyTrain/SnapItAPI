@@ -17,6 +17,8 @@ class SnapSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     snaplike_id = serializers.SerializerMethodField()
+    snaplikes_count = serializers.ReadOnlyField()
+    snapcomments_count = serializers.ReadOnlyField()
 
     def get_snaplike_id(self,obj):
         user = self.context['request'].user
@@ -51,6 +53,7 @@ class SnapSerializer(serializers.ModelSerializer):
             'id', 'owner', 'is_owner',
             'profile_id', 'profile_image', 
             'created', 'updated', 'title', 
-            'body', 'featured_image', 'status',
-            'snaplike_id'
+            'body', 'snaplikes_count',
+            'featured_image', 'status',
+            'snaplike_id', 'snapcomments_count'
             ]

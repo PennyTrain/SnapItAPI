@@ -20,6 +20,12 @@ class Profile(models.Model):
         return f"{self.owner}'s profile"
 
 
+
+@property
+def friendship_count(self):
+    return self.owner__friended__friended.count()
+
+
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(owner=instance)
