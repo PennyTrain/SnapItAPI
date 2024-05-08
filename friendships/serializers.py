@@ -5,11 +5,11 @@ from .models import SnapFriendship
 
 class SnapFriendshipSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    friended = serializers.ReadOnlyField(source='friended.username')
+    friended_user = serializers.ReadOnlyField(source='friended.username')
 
     class Meta:
         model = SnapFriendship
-        fields = ('id', 'owner', 'friended', 'created')
+        fields = ('id', 'owner', 'friended', 'created', 'friended_user')
 
     def create(self, validated_data):
         friended_data = validated_data.pop('friended')
