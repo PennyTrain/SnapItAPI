@@ -16,6 +16,7 @@ class SnapList(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Snap.objects.annotate(
         snaplikes_count=Count('snaplikes', distinct=True),
+        snapdislikes_count=Count('snapdislikes', distinct=True),
         snapcomments_count=Count('snapcomments', distinct=True)
     ).order_by('-created')
     filter_backends = [
@@ -26,9 +27,11 @@ class SnapList(generics.ListCreateAPIView):
     filterset_fields = [
         # the owners feed
         'owner__friended__owner__profile',
-        # the owners liked posts
+        # the owners liked snaps
         'snaplikes__owner__profile',
-        # the owners posts
+        # the owners disliked snaps
+        'snapdislikes__owner__profile',
+        # the owners snaps
         'owner__profile',
     ]
     search_fields = [
@@ -37,8 +40,10 @@ class SnapList(generics.ListCreateAPIView):
     ]
     ordering_fields = [
         'snaplikes_count',
+        'snapdislikes_count',
         'snapcomments_count',
         'snaplikes__created',
+        'snapdislikes__created'
     ]
 
     def perform_create(self, serializer):
@@ -53,6 +58,7 @@ class SnapDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Snap.objects.annotate(
         snaplikes_count=Count('snaplikes', distinct=True),
+        snapdislikes_count=Count('snapdislikes', distinct=True),
         snapcomments_count=Count('snapcomments', distinct=True)
     ).order_by('-created')
 

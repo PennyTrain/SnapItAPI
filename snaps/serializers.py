@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Snap
 from snaplikes.models import SnapLike
+from snap_dislikes.models import SnapDislike
 
 class SnapSerializer(serializers.ModelSerializer):
     """
@@ -18,6 +19,9 @@ class SnapSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     snaplike_id = serializers.SerializerMethodField()
     snaplikes_count = serializers.ReadOnlyField()
+    snapdislike_id = serializers.SerializerMethodField()
+    snapdislikes_count = serializers.ReadOnlyField()
+    
     snapcomments_count = serializers.ReadOnlyField()
 
     def get_snaplike_id(self,obj):
@@ -27,6 +31,15 @@ class SnapSerializer(serializers.ModelSerializer):
                 owner=user, snap=obj
             ).first()
             return snaplikes.id if snaplikes else None
+        return None
+    
+    def get_snapdislike_id(self,obj):
+        user = self.context['request'].user
+        if user.is_authenticated():
+            snapdislikes = SnapDislike.objects.filter(
+                owner=user, snap=obj
+            ).first()
+            return snapdislikes.id if snapdislikes else None
         return None
 
 
@@ -55,5 +68,6 @@ class SnapSerializer(serializers.ModelSerializer):
             'created', 'updated', 'title', 
             'body', 'snaplikes_count',
             'featured_image', 'status',
-            'snaplike_id', 'snapcomments_count'
+            'snaplike_id', 'snapcomments_count', 
+            'snapdislike_id', 'snapdislikes_count',
             ]

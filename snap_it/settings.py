@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'snaplikes',
     'snap_comments',
     'friendships',
+    'snap_dislikes',
 ]
 
 MIDDLEWARE = [
