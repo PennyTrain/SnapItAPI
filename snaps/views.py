@@ -4,6 +4,7 @@ from django.db.models import Count
 from .models import Snap
 from .serializers import SnapSerializer
 from snap_it.permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class SnapList(generics.ListCreateAPIView):
@@ -19,7 +20,16 @@ class SnapList(generics.ListCreateAPIView):
     ).order_by('-created')
     filter_backends = [
         filters.OrderingFilter,
-        filters.SearchFilter
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        # the owners feed
+        'owner__friended__owner__profile',
+        # the owners liked posts
+        'snaplikes__owner__profile',
+        # the owners posts
+        'owner__profile',
     ]
     search_fields = [
         'owner__username',
