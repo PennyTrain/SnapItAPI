@@ -24,8 +24,8 @@ def logout_route(request):
         httponly=True,
         expires=datetime(1970, 1, 1),
         max_age=0,
-        samesite='Lax',
-        secure=True,
+        samesite=JWT_AUTH_SAMESITE,
+        secure=JWT_AUTH_SECURE,
     )
     response.set_cookie(
         key=JWT_AUTH_REFRESH_COOKIE,
@@ -33,7 +33,7 @@ def logout_route(request):
         httponly=True,
         expires=datetime(1970, 1, 1),
         max_age=0,
-        samesite='Lax',
-        secure=True,
+        samesite=JWT_AUTH_SAMESITE,
+        secure=JWT_AUTH_SECURE,
     )
     return response
