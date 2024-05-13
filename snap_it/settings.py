@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import re
 
 if os.path.exists('env.py'):
     import env
@@ -48,7 +49,8 @@ if 'DEV' not in os.environ:
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = 'my_app_auth'
-JWT_AUTH_REFRESH_COOKIE = 'my_refresh_token'
+JWT_AUTH_REFRESH_COOKE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'snap_it.serializers.CurrentUserSerializer'
@@ -58,14 +60,15 @@ REST_AUTH_SERIALIZERS = {
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#wat_%ei_md=k#cqynn4t=u_4m!lba3k-!w+84#zs*_p7r=h1l'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    'https://snapit-api-608e97df4345.herokuapp.com/',
 ]
 
 
@@ -89,6 +92,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
 
     'profiles',
     'snaps',
@@ -101,6 +105,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,6 +113,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^([^.]+)', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    # Add other origins as needed
 ]
 
 ROOT_URLCONF = 'snap_it.urls'
