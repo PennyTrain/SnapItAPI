@@ -4,5 +4,5 @@ from rest_framework.response import Response
 @api_view()
 def root_route(request):
     return Response({
-        "message": "Welcome to the snapit API!!!!!"
+        "message": "Welcome to my API, used for the Snap it Application!"
     })
