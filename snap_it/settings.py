@@ -68,7 +68,7 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'https://snapit-api-608e97df4345.herokuapp.com/',
+    'snapit-api-608e97df4345.herokuapp.com',
 ]
 
 
@@ -160,7 +160,7 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-    print('connected')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
