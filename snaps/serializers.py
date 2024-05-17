@@ -26,7 +26,7 @@ class SnapSerializer(serializers.ModelSerializer):
 
     def get_snaplike_id(self,obj):
         user = self.context['request'].user
-        if user.is_authenticated():
+        if user.is_authenticated:
             snaplikes = SnapLike.objects.filter(
                 owner=user, snap=obj
             ).first()
@@ -35,7 +35,7 @@ class SnapSerializer(serializers.ModelSerializer):
     
     def get_snapdislike_id(self,obj):
         user = self.context['request'].user
-        if user.is_authenticated():
+        if user.is_authenticated:
             snapdislikes = SnapDislike.objects.filter(
                 owner=user, snap=obj
             ).first()
