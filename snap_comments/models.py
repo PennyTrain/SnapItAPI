@@ -18,7 +18,7 @@ class SnapComment(models.Model):
     pet_name = models.CharField(max_length=100, blank=True)
     pet_age = models.IntegerField(blank=True, null=True)
     pet_breed = models.CharField(max_length=100, blank=True)
-    pet_type = models.CharField(max_length=100)
+    pet_type = models.CharField(max_length=100, default="Other")
     attachment = models.FileField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):

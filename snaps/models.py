@@ -23,7 +23,7 @@ class Snap(models.Model):
     pet_breed = models.CharField(max_length=100, blank=True)
     event_date = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True)
-    pet_type = models.CharField(max_length=100)
+    pet_type = models.CharField(max_length=100, default="Other")
 
     def __str__(self):
         return str(self.id) + ' | ' + str(self.title)
