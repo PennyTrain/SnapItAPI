@@ -32,11 +32,12 @@ class SnapLikeDetail(generics.RetrieveDestroyAPIView):
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = SnapLikeSerializer
+    queryset = SnapLike.objects.all()
     
-    def get_object(self, pk):
-        try:
-            snaplike = SnapLike.objects.get(pk=pk)
-            self.check_object_permissions(self.request, snaplike)
-            return snaplike
-        except SnapLike.DoesNotExist:
-            raise Http404
+    # def get_object(self, pk):
+    #     try:
+    #         snaplike = SnapLike.objects.get(pk=pk)
+    #         self.check_object_permissions(self.request, snaplike)
+    #         return snaplike
+    #     except SnapLike.DoesNotExist:
+    #         raise Http404
