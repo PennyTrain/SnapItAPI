@@ -14,6 +14,7 @@ class Profile(models.Model):
     pet_name = models.CharField(max_length=100, blank=True)
     pet_age = models.IntegerField(blank=True, null=True)
     pet_breed = models.CharField(max_length=100, blank=True)
+    pet_type = models.CharField(max_length=100)
     # CHANGE IMAGE URL
 
     class Meta:

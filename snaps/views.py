@@ -39,6 +39,7 @@ class SnapList(generics.ListCreateAPIView):
         'pet_name'
         'pet_age'
         'pet_breed'
+        'pet_type'
     ]
     ordering_fields = [
         'snaplikes_count',
@@ -49,6 +50,7 @@ class SnapList(generics.ListCreateAPIView):
         'pet_name',
         'pet_age',
         'pet_breed',
+        'pet_type'
     ]
 
     def perform_create(self, serializer):

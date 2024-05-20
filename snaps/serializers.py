@@ -18,6 +18,7 @@ class SnapSerializer(serializers.ModelSerializer):
     pet_breed = serializers.ReadOnlyField()
     event_date = serializers.ReadOnlyField()
     location = serializers.ReadOnlyField()
+    pet_type = serializers.ReadOnlyField()
 
     def get_snaplike_id(self, obj):
         user = self.context['request'].user
@@ -61,5 +62,5 @@ class SnapSerializer(serializers.ModelSerializer):
             'snapdislike_id', 'snapdislikes_count', 
             'snapcomments_count',
             'pet_name', 'pet_age', 'pet_breed', 
-            'event_date', 'location'
+            'event_date', 'location', 'pet_type'
         ]

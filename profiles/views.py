@@ -26,6 +26,10 @@ class ProfileList(generics.ListAPIView):
         'friendship_count',
         'owner__friended__friended__created_at',  # Ordering by friendship creation date
         'owner__friended__created_at',  # Ordering by friended creation date
+        'pet_type',
+        'pet_breed',
+        'pet_age',
+        'pet_name',
     ]
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):

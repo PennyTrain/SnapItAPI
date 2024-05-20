@@ -13,6 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     pet_name = serializers.ReadOnlyField()
     pet_age = serializers.ReadOnlyField()
     pet_breed = serializers.ReadOnlyField()
+    pet_type = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -33,5 +34,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'friendship_id', 
             'snaps_count', 'friendship_count', 'friended_count', 'pet_name',
-            'pet_age', 'pet_breed'
+            'pet_age', 'pet_breed', 'pet_type'
         ]
