@@ -18,6 +18,11 @@ class Snap(models.Model):
     body = models.TextField(blank=True)
     featured_image = models.ImageField(upload_to='images/', default='#')
     status = models.IntegerField(choices=STATUS, default=1)
+    pet_name = models.CharField(max_length=100, blank=True)
+    pet_age = models.IntegerField(blank=True, null=True)
+    pet_breed = models.CharField(max_length=100, blank=True)
+    event_date = models.DateTimeField(blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return str(self.id) + ' | ' + str(self.title)
