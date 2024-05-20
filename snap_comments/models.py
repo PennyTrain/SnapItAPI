@@ -14,6 +14,11 @@ class SnapComment(models.Model):
     updated = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=150, blank=True)
     body = models.TextField(blank=True)
+    is_flagged = models.BooleanField(default=False)
+    pet_name = models.CharField(max_length=100, blank=True)
+    pet_age = models.IntegerField(blank=True, null=True)
+    pet_breed = models.CharField(max_length=100, blank=True)
+    attachment = models.FileField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):
         return str(self.id) + ' | ' + str(self.title)
