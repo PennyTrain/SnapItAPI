@@ -13,12 +13,6 @@ class SnapSerializer(serializers.ModelSerializer):
     snapdislike_id = serializers.SerializerMethodField()
     snapdislikes_count = serializers.ReadOnlyField()
     snapcomments_count = serializers.ReadOnlyField()
-    pet_name = serializers.ReadOnlyField()
-    pet_age = serializers.ReadOnlyField()
-    pet_breed = serializers.ReadOnlyField()
-    event_date = serializers.ReadOnlyField()
-    location = serializers.ReadOnlyField()
-    pet_type = serializers.ReadOnlyField()
 
     def get_snaplike_id(self, obj):
         user = self.context['request'].user
