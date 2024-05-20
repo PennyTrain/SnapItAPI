@@ -11,6 +11,9 @@ class Profile(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_profile_qdjgyp'
     )
+    pet_name = models.CharField(max_length=100, blank=True)
+    pet_age = models.IntegerField(blank=True, null=True)
+    pet_breed = models.CharField(max_length=100, blank=True)
     # CHANGE IMAGE URL
 
     class Meta:

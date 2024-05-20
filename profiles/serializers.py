@@ -10,6 +10,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     friendship_count = serializers.ReadOnlyField()
     friended_count = serializers.ReadOnlyField()
     snaps_count = serializers.ReadOnlyField()
+    pet_name = serializers.ReadOnlyField()
+    pet_age = serializers.ReadOnlyField()
+    pet_breed = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -29,5 +32,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'friendship_id', 
-            'snaps_count', 'friendship_count', 'friended_count'
+            'snaps_count', 'friendship_count', 'friended_count', 'pet_name',
+            'pet_age', 'pet_breed'
         ]
