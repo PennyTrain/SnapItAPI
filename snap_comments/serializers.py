@@ -14,11 +14,6 @@ class SnapCommentSerializer(serializers.ModelSerializer):
     created = serializers.SerializerMethodField()
     updated = serializers.SerializerMethodField()
     attachment = serializers.FileField()
-    is_flagged = serializers.ReadOnlyField()
-    pet_name = serializers.ReadOnlyField()
-    pet_age = serializers.ReadOnlyField()
-    pet_breed = serializers.ReadOnlyField()
-    pet_type = serializers.ReadOnlyField()
 
 
     def get_is_owner(self, obj):
