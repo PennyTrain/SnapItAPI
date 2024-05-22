@@ -29,3 +29,7 @@ class SnapCommentSerializer(serializers.ModelSerializer):
             'snap', 'created', 'updated', 'body', 'title', 'is_flagged',
             'pet_name', 'pet_age', 'pet_breed', 'attachment', 'pet_type'
         ]
+
+
+class SnapCommentDetailSerializer(serializers.ModelSerializer):
+    post = serializers.ReadOnlyField(source='snap.id')
