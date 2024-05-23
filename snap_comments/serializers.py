@@ -32,13 +32,8 @@ class SnapCommentSerializer(serializers.ModelSerializer):
         ]
 
 
-class SnapCommentDetailSerializer(serializers.ModelSerializer):
-    post = serializers.ReadOnlyField(source='snap.id')
+class SnapCommentDetailSerializer(SnapCommentSerializer):
+    snap = serializers.ReadOnlyField(source='snap.id')
 
-    class Meta:
-        model = SnapComment
-        fields = [
-            'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
-            'snap', 'created', 'updated', 'body', 'title', 'is_flagged',
-            'pet_name', 'pet_age', 'pet_breed', 'attachment', 'pet_type'
-        ]
+    class Meta(SnapCommentSerializer.Meta):
+        pass
