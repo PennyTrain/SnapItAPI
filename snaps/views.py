@@ -35,10 +35,10 @@ class SnapList(generics.ListCreateAPIView):
     ]
     search_fields = [
         'owner__username',
-        'title'
-        'pet_name'
-        'pet_age'
-        'pet_breed'
+        'title',
+        'pet_name',
+        'pet_age',
+        'pet_breed',
         'pet_type'
     ]
     ordering_fields = [
@@ -46,7 +46,7 @@ class SnapList(generics.ListCreateAPIView):
         'snapdislikes_count',
         'snapcomments_count',
         'snaplikes__created',
-        'snapdislikes__created'
+        'snapdislikes__created',
         'pet_name',
         'pet_age',
         'pet_breed',
