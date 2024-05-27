@@ -1,15 +1,14 @@
 from rest_framework import generics, filters
 from django.db.models import Count
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Snap
 from .serializers import SnapSerializer
 from snap_it.permissions import IsOwnerOrReadOnly
-from django_filters.rest_framework import DjangoFilterBackend
-
 
 class SnapList(generics.ListCreateAPIView):
     """
-    List posts or create a post if logged in
-    The perform_create method associates the post with the logged in user.
+    List posts or create a post if logged in.
+    The perform_create method associates the post with the logged-in user.
     """
     serializer_class = SnapSerializer
     permission_classes = [IsOwnerOrReadOnly]
@@ -24,14 +23,10 @@ class SnapList(generics.ListCreateAPIView):
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        # the owners feed
-        'owner__friended__owner__profile',
-        # the owners liked snaps
-        'snaplikes__owner__profile',
-        # the owners disliked snaps
-        'snapdislikes__owner__profile',
-        # the owners snaps
-        'owner__profile',
+        'owner__friended__owner__profile',  # the owner's feed
+        'snaplikes__owner__profile',        # the owner's liked snaps
+        'snapdislikes__owner__profile',     # the owner's disliked snaps
+        'owner__profile',                   # the owner's snaps
     ]
     search_fields = [
         'owner__username',
@@ -54,8 +49,7 @@ class SnapList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)    
-
+        serializer.save(owner=self.request.user)
 
 class SnapDetail(generics.RetrieveUpdateDestroyAPIView):
     """
