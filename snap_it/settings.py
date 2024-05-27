@@ -122,7 +122,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://3000-pennytrain-snapit-wem7licl7n9.ws-eu114.gitpod.io/',
     # Add other origins as needed
 ]
 
