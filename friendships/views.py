@@ -3,6 +3,16 @@ from .models import SnapFriendship
 from .serializers import SnapFriendshipSerializer
 from snap_it.permissions import IsOwnerOrReadOnly
 
+"""
+The code defines two API views using Django REST Framework's
+generic views to manage SnapFriendship objects. The SnapFriendshipList
+view allows listing all SnapFriendship instances and creating new ones,
+ensuring the owner is set to the current user, with permissions checked
+by IsOwnerOrReadOnly. The SnapFriendshipDetail view enables retrieving,
+updating, and deleting individual SnapFriendship instances, restricted
+to the user's own friendships through the same permission class.
+"""
+
 
 class SnapFriendshipList(generics.ListCreateAPIView):
     """
