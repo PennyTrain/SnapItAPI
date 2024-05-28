@@ -4,6 +4,16 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from snap_it.permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+"""
+This code defines two API views for managing profiles using Django
+REST Framework. The ProfileList view lists profiles with additional
+annotations for counts of snaps, friends, and friendships, and
+supports filtering and ordering based on various fields, including
+pet attributes and friendship dates. The ProfileDetail view allows
+retrieving and updating individual profiles, restricted by the
+IsOwnerOrReadOnly permission, with the same annotations for 
+additional profile metrics.
+"""
 
 
 class ProfileList(generics.ListAPIView):

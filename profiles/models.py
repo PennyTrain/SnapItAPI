@@ -1,6 +1,21 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+"""
+This code defines a Profile model
+associated with the Django User model
+via a one-to-one relationship,
+containing fields such as name, content,
+image, and pet-related information.
+The model automatically records timestamps
+for creation and updates, and orders profiles
+by the creation date in descending order. A
+friendship_count property is defined to count the
+number of friendships for the profile's owner. Additionally,
+a signal handler create_profile ensures a profile is created for
+each new user, connecting to the post_save signal of the User model.
+"""
+
 
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -24,7 +39,6 @@ class Profile(models.Model):
         return f"{self.owner}'s profile"
 
 
-
 @property
 def friendship_count(self):
     return self.owner__friended__friended.count()
@@ -33,5 +47,6 @@ def friendship_count(self):
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(owner=instance)
+
 
 post_save.connect(create_profile, sender=User)

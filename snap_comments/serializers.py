@@ -1,6 +1,17 @@
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from snap_comments.models import SnapComment
+"""
+The code defines two Django REST Framework serializers
+for the SnapComment model: SnapCommentSerializer and
+SnapCommentDetailSerializer. SnapCommentSerializer serializes
+the SnapComment fields and includes additional computed fields
+for the owner's username, profile information, and whether
+the current user is the owner, as well as natural time
+formatting for creation and update timestamps.
+SnapCommentDetailSerializer extends SnapCommentSerializer
+with a read-only snap field that references the snap's ID.
+"""
 
 
 class SnapCommentSerializer(serializers.ModelSerializer):

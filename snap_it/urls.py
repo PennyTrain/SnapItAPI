@@ -16,6 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import root_route, logout_route
+"""
+It includes routes
+for the Django admin interface, authentication endpoints provided
+by dj_rest_auth, user registration, and logout routes. Additionally,
+it includes URLs for various app-specific endpoints related to profiles,
+snaps, snap likes, snap comments, friendships, and snap dislikes,
+facilitating the navigation and interaction within the web application.
+"""
 
 
 urlpatterns = [
