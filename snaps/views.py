@@ -4,6 +4,19 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Snap
 from .serializers import SnapSerializer
 from snap_it.permissions import IsOwnerOrReadOnly
+"""
+The code defines two Django REST Framework views for
+managing Snap instances: SnapList and SnapDetail.
+SnapList allows users to list all snaps or create a
+new snap if logged in, with the queryset annotated with
+counts for likes, dislikes, and comments, and supports
+filtering, searching, and ordering based on various fields.
+SnapDetail provides endpoints for retrieving, updating, or
+deleting a specific snap, with permissions ensuring that
+only the owner can edit or delete their snaps, and includes
+the same annotations for like, dislike, and comment counts.
+"""
+
 
 class SnapList(generics.ListCreateAPIView):
     """
@@ -51,6 +64,7 @@ class SnapList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+
 class SnapDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve a post and edit or delete it if you own it.
@@ -62,5 +76,3 @@ class SnapDetail(generics.RetrieveUpdateDestroyAPIView):
         snapdislikes_count=Count('snapdislikes', distinct=True),
         snapcomments_count=Count('snapcomments', distinct=True)
     ).order_by('-created')
-
-
