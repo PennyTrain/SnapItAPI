@@ -24,7 +24,8 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../profile_tdxvxh.jpg'
+        upload_to='images/', 
+        default='https://res.cloudinary.com/dgz5gpe5z/image/upload/v1716118492/media/images/profile_dec7sg.jpg'
     )
     pet_name = models.CharField(max_length=100, blank=True)
     pet_age = models.IntegerField(blank=True, null=True)
@@ -36,7 +37,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.owner}'s profile"
-
 
 @property
 def friendship_count(self):

@@ -167,20 +167,128 @@ This Django app adds Cross-Origin-Resource Sharing (CORS) headers to responses, 
 ### Testing
 
 Throughout the build of the Snap It API project, rigorous testing was implemented to ensuring functionality and seamless integration between the new front-end React application and the deployed heroku live link version. Initially, unit tests were created for the Django backend to validate individual endpoints and data processing functions. As development progressed, integration tests were employed to verify the communication between the React app and the Django API, ensuring data fetched and submitted through API requests matched the expected outcomes. End-to-end testing was also conducted, simulating user interactions from the React interface to the backend, to validate the overall user experience and flow. This comprehensive testing strategy, encompassing unit, integration, and end-to-end tests, facilitated early detection and resolution of bugs, ensuring a smooth and reliable release.
-* Testcase 1
-- Making sure I can log in to the backend API on the Django rest framework HTML interface
-![](./assets/login.png)
-* Testcase 2
-- Ensuring the links worked, therefore when trying to access a point in the front end later it would not show errors
+
+
+1. Test Listing All Snap Likes
+- Test: List all snap likes.
+- Outcome: All snap likes are listed.
+---
+![](./assets/snaplikes.png)
+---
+2. Test Getting individual SnapLike
+- Test: Get Snap Like by ID
+- Outcome: Snap Like is got by ID
+---
+![](./assets/snaplikes-detail.png)
+---
+3. Test Listing All Snap Dislikes
+- Test: List all snap dislikes.
+- Outcome: All snap dislikes are listed.
+---
+![](./assets/snapdislikes.png)
+---
+4. Test Getting individual Snap Dislike
+- Test: Get Snap Dislike by ID
+- Outcome: Snap Dislike is got by ID
+---
+![](./assets/snapdislikes-detail.png)
+---
+5. Test Listing All Profiles
+- Test: List all Profiles.
+- Outcome: All profiles are listed.
+---
 ![](./assets/profiles.png)
+---
+6. Test Getting individual Profile
+- Test: Get Profile by ID
+- Outcome: Profile is got by ID
+---
 ![](./assets/profiles-detail.png)
+---
+7. Test Listing All Comments
+- Test: List all Comments.
+- Outcome: All Comments are listed.
+---
 ![](./assets/snapcomments.png)
+---
+8. Test Getting individual Comments
+- Test: Get Comments by ID
+- Outcome: Comment is got by ID
+---
 ![](./assets/snapcomments-detail.png)
+---
+9. Test Listing All Snaps
+- Test: List all Snaps
+- Outcome: All Snaps are listed.
+---
 ![](./assets/snaps.png)
+---
+10. Test Getting individual Snap
+- Test: Get Snap by ID
+- Outcome: Snap is got by ID
+---
 ![](./assets/snapdetail.png)
+---
+
+### Python Validation
+1. Friendships
+- models.py
+- no errors
+- serializers.py
+- no errors
+- urls.py
+- no errors
+- views.py
+- no errors
+2. Profiles
+- models.py
+- no errors
+- serializers.py
+- no errors
+- urls.py
+- no errors
+- views.py
+- no errors
+3. snap_comments
+- models.py
+- no errors
+- serializers.py
+- no errors
+- urls.py
+- no errors
+- views.py
+- no errors
+4. snap_dislikes
+- models.py
+- no errors
+- serializers.py
+- no errors
+- urls.py
+- no errors
+- views.py
+- no errors
+5. snaplikes
+- models.py
+- no errors
+- serializers.py
+- no errors
+- urls.py
+- no errors
+- views.py
+- no errors
+6. snaps
+- models.py
+- no errors
+- serializers.py
+- no errors
+- urls.py
+- no errors
+- views.py
+- no errors
 
 
-## API endpoints
+
+### API endpoints
 
 | **URL** | **Notes** | **HTTP Method** | **CRUD operation** | **View type** | **POST/PUT data format** |
 |---|---|---:|---|---:|---|
