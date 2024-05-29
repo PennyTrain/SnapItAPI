@@ -166,8 +166,52 @@ This Django app adds Cross-Origin-Resource Sharing (CORS) headers to responses, 
 
 ### Testing
 
-Throughout the build of the Snap It API project, rigorous testing was implemented to ensuring functionality and seamless integration between the new front-end React application and the Django REST Framework HTML interface. Initially, unit tests were created for the Django backend to validate individual endpoints and data processing functions. As development progressed, integration tests were employed to verify the communication between the React app and the Django API, ensuring data fetched and submitted through API requests matched the expected outcomes. End-to-end testing was also conducted, simulating user interactions from the React interface to the backend, to validate the overall user experience and flow. This comprehensive testing strategy, encompassing unit, integration, and end-to-end tests, facilitated early detection and resolution of bugs, ensuring a smooth and reliable release.
+Throughout the build of the Snap It API project, rigorous testing was implemented to ensuring functionality and seamless integration between the new front-end React application and the deployed heroku live link version. Initially, unit tests were created for the Django backend to validate individual endpoints and data processing functions. As development progressed, integration tests were employed to verify the communication between the React app and the Django API, ensuring data fetched and submitted through API requests matched the expected outcomes. End-to-end testing was also conducted, simulating user interactions from the React interface to the backend, to validate the overall user experience and flow. This comprehensive testing strategy, encompassing unit, integration, and end-to-end tests, facilitated early detection and resolution of bugs, ensuring a smooth and reliable release.
+* Testcase 1
+- Making sure I can log in to the backend API on the Django rest framework HTML interface
+![](./assets/login.png)
+* Testcase 2
+- Ensuring the links worked, therefore when trying to access a point in the front end later it would not show errors
+![](./assets/profiles.png)
+![](./assets/profiles-detail.png)
+![](./assets/snapcomments.png)
+![](./assets/snapcomments-detail.png)
+![](./assets/snaps.png)
+![](./assets/snapdetail.png)
 
+
+## API endpoints
+
+| **URL** | **Notes** | **HTTP Method** | **CRUD operation** | **View type** | **POST/PUT data format** |
+|---|---|---:|---|---:|---|
+| **Profile endpoints** |  |  |  |  |  |
+| /profiles/ | List all profiles. | GET | Read | List | N/A |
+| /profiles/ | Create a new profile. | POST | Create | List | {<br> "owner": int,<br> "name": "string",<br> "content": "string",<br> "image": "file",<br> "pet_name": "string",<br> "pet_age": int,<br> "pet_breed": "string",<br> "pet_type": "string"<br>} |
+| /profiles/id | Retrieve a specific profile by ID. | GET | Read | Detail | N/A |
+| /profiles/id | Update an existing profile by ID. | PUT | Update | Detail | {<br> "name": "string",<br> "content": "string",<br> "image": "file",<br> "pet_name": "string",<br> "pet_age": int,<br> "pet_breed": "string",<br> "pet_type": "string"<br>} |
+| /profiles/id | Delete a specific profile by ID. | DELETE | Delete | Detail | N/A |
+| **Snap endpoints** |  |  |  |  |  |
+| /snaps/ | List all snaps. | GET | Read | List | N/A |
+| /snaps/ | Create a new snap. | POST | Create | List | {<br> "owner": int,<br> "title": "string",<br> "body": "string",<br> "featured_image": "file",<br> "status": int,<br> "pet_name": "string",<br> "pet_age": int,<br> "pet_breed": "string",<br> "event_date": "datetime",<br> "location": "string",<br> "pet_type": "string"<br>} |
+| /snaps/id | Retrieve a specific snap by ID. | GET | Read | Detail | N/A |
+| /snaps/id | Update an existing snap by ID. | PUT | Update | Detail | {<br> "title": "string",<br> "body": "string",<br> "featured_image": "file",<br> "status": int,<br> "pet_name": "string",<br> "pet_age": int,<br> "pet_breed": "string",<br> "event_date": "datetime",<br> "location": "string",<br> "pet_type": "string"<br>} |
+| /snaps/id | Delete a specific snap by ID. | DELETE | Delete | Detail | N/A |
+| **Snap Comment endpoints** |  |  |  |  |  |
+| /snapcomments/ | List all snap comments. | GET | Read | List | N/A |
+| /snapcomments/ | Create a new snap comment. | POST | Create | List | {<br> "owner": int,<br> "snap": int,<br> "title": "string",<br> "body": "string",<br> "is_flagged": bool,<br> "pet_name": "string",<br> "pet_age": int,<br> "pet_breed": "string",<br> "pet_type": "string",<br> "attachment": "file"<br>} |
+| /snapcomments/id | Retrieve a specific snap comment by ID. | GET | Read | Detail | N/A |
+| /snapcomments/id | Update an existing snap comment by ID. | PUT | Update | Detail | {<br> "title": "string",<br> "body": "string",<br> "is_flagged": bool,<br> "pet_name": "string",<br> "pet_age": int,<br> "pet_breed": "string",<br> "pet_type": "string",<br> "attachment": "file"<br>} |
+| /snapcomments/id | Delete a specific snap comment by ID. | DELETE | Delete | Detail | N/A |
+| **Snap Like endpoints** |  |  |  |  |  |
+| /snaplikes/ | List all snap likes. | GET | Read | List | N/A |
+| /snaplikes/ | Create a new snap like. | POST | Create | List | {<br> "owner": int,<br> "snap": int<br>} |
+| /snaplikes/id | Retrieve a specific snap like by ID. | GET | Read | Detail | N/A |
+| /snaplikes/id | Delete a specific snap like by ID. | DELETE | Delete | Detail | N/A |
+| **Snap Dislike endpoints** |  |  |  |  |  |
+| /snapdislikes/ | List all snap dislikes. | GET | Read | List | N/A |
+| /snapdislikes/ | Create a new snap dislike. | POST | Create | List | {<br> "owner": int,<br> "snap": int<br>} |
+| /snapdislikes/id | Retrieve a specific snap dislike by ID. | GET | Read | Detail | N/A |
+| /snapdislikes/id | Delete a specific snap dislike by ID. | DELETE | Delete | Detail | N/A |
 
 
 ### Project Deployment
