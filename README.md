@@ -3,10 +3,8 @@
 ### Data Models
 
 #### Friendships
-* SnapFriendship,
-represents a friendship relationship between
-two users. It has foreign key references to
-the User model for both the owner and the friended user,
+* SnapFriendship, represents a friendship relationship between
+two users. It has foreign key references to the User model for both the owner and the friended user,
 ensuring that each friendship is unique through the
 unique_together constraint on these fields. The model
 also includes a timestamp for when the friendship was
@@ -165,6 +163,11 @@ This Django app adds Cross-Origin-Resource Sharing (CORS) headers to responses, 
 * webencodings==0.5.1
 * Werkzeug==3.0.1
 * whitenoise==5.3.0
+
+### Testing
+
+Throughout the build of the Snap It API project, rigorous testing was implemented to ensuring functionality and seamless integration between the new front-end React application and the Django REST Framework HTML interface. Initially, unit tests were created for the Django backend to validate individual endpoints and data processing functions. As development progressed, integration tests were employed to verify the communication between the React app and the Django API, ensuring data fetched and submitted through API requests matched the expected outcomes. End-to-end testing was also conducted, simulating user interactions from the React interface to the backend, to validate the overall user experience and flow. This comprehensive testing strategy, encompassing unit, integration, and end-to-end tests, facilitated early detection and resolution of bugs, ensuring a smooth and reliable release.
+
 
 
 ### Project Deployment
