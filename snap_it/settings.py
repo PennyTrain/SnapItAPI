@@ -122,6 +122,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://snapit-2fde1c079281.herokuapp.com'
     # Add other origins as needed
 ]
 
