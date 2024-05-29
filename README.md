@@ -1,5 +1,114 @@
 # Snap It API!
 
+### Data Models
+
+#### Friendships
+* SnapFriendship,
+represents a friendship relationship between
+two users. It has foreign key references to
+the User model for both the owner and the friended user,
+ensuring that each friendship is unique through the
+unique_together constraint on these fields. The model
+also includes a timestamp for when the friendship was
+created and a string representation method that returns
+the usernames of the owner and friended users.
+
+#### Profiles
+* Profile model
+associated with the Django User model
+via a one-to-one relationship,
+containing fields such as name, content,
+image, and pet-related information.
+The model automatically records timestamps
+for creation and updates, and orders profiles
+by the creation date in descending order. A
+friendship_count property is defined to count the
+number of friendships for the profile's owner. Additionally,
+a signal handler create_profile ensures a profile is created for
+each new user, connecting to the post_save signal of the User model.
+
+#### SnapComments
+* SnapComment, represents comments on snaps made by users.
+Each SnapComment is linked to a user (owner) and a snap,
+and includes fields such as title, body, pet details,
+attachment, and timestamps for creation and update.
+The model also includes metadata to order comments by creation
+date in descending order and a __str__ method to return a string
+representation of the comment using its ID and title.
+
+#### SnapDislikes
+* SnapDislike, where a user dislikes a snap.
+Each SnapDislike instance is associated with a user
+(owner) and a snap. The model includes a timestamp for
+when the dislike was created and ensures that each
+combination of user and snap is unique, ordering them
+by creation date in descending order.
+
+#### SnapLikes
+* SnapLike,
+which represents a like given by a user to a snap.
+Each SnapLike is linked to a user (owner) and a snap,
+with a timestamp for when the like was created. The
+model ensures uniqueness for each combination of user
+and snap, orders the likes by creation date in descending
+order, and provides a string representation combining
+the owner's username and the snap.
+
+#### Snaps
+*     The Snap model contains fields such as owner, created,
+    updated, title, body, featured_image, and status,
+    with appropriate data types and constraints. The Meta
+    inner class specifies the default ordering of instances
+    based on the date they were made.
+
+    ## Frameworks, libraries and dependencies
+
+The following additional utilities, apps and modules were used.
+
+### django-cloudinary-storage
+https://pypi.org/project/django-cloudinary-storage/
+
+Enables cloudinary integration for storing user profile images in cloudinary.
+
+### dj-allauth
+https://django-allauth.readthedocs.io/en/latest/
+
+Used for user authentication. This package enables registration and authentication using a range of social media accounts. 
+
+### dj-rest-auth
+https://dj-rest-auth.readthedocs.io/en/latest/introduction.html
+
+Provides REST API endpoints for login and logout. The user registration endpoints provided by dj-rest-auth 
+
+### djangorestframework-simplejwt
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
+
+Provides JSON web token authentication.
+
+### dj-database-url
+https://pypi.org/project/dj-database-url/
+
+Creates an environment variable to configure the connection to the database.
+
+### psychopg2
+https://pypi.org/project/psycopg2/
+
+Database adapater to enable interaction between Python and the PostgreSQL database.
+
+### python-dateutil
+https://pypi.org/project/python-dateutil/
+
+This module provides extensions to the standard Python datetime module. It is a pre-requisite for django-recurrence library.
+
+### django-filter
+https://django-filter.readthedocs.io/en/stable/
+
+Django Filter is utilized in the SnapList view to enable dynamic filtering, searching, and ordering of Snap instances based on specified fields such as the owner's profile, snap attributes, and related model counts. The filter_backends, filterset_fields, search_fields, and ordering_fields attributes define the filtering mechanisms, allowing for a highly flexible and user-friendly querying experience.
+
+### django-cors-headers
+https://pypi.org/project/django-cors-headers/
+
+This Django app adds Cross-Origin-Resource Sharing (CORS) headers to responses, to enable the API to respond to requests from origins other than its own host.
 
 #### Technologies used
 

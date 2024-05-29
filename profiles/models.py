@@ -24,13 +24,12 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_qdjgyp'
+        upload_to='images/', default='../profile_tdxvxh.jpg'
     )
     pet_name = models.CharField(max_length=100, blank=True)
     pet_age = models.IntegerField(blank=True, null=True)
     pet_breed = models.CharField(max_length=100, blank=True)
     pet_type = models.CharField(max_length=100, default="Other")
-    # CHANGE IMAGE URL
 
     class Meta:
         ordering = ['-created_at']
