@@ -286,14 +286,10 @@ Throughout the build of the Snap It API project, rigorous testing was implemente
 - views.py
 - no errors
 
-### Bugs found in API while testing
-
-### Bugs found in front end while testing
-
 
 ### Unresolved bugs
 * Ideally the front end site would have an aspect where you can friend and unfriend other users, the model is still in the backend and some of the code still in the front end as I ran into a bug I could not seem to figure out... When clicking on the front end friend button it threw out a 500 internal server error, however I have no idea why, I tried to reach out to tutor support but as I use vscode it took a while for everything to become accessible in gitpod due to configvars, cors allowed origins, ect... I wondered whether it was a PUT request instead of a POST request but that did not work... 
-* The profile picture does not seem to be rendering... however I know cloudinary is working because when I 
+* The profile picture does not seem to be rendering... however I know cloudinary is working as I can update the profile picture and snaps. However I know the url works, as when put directly into the browser there is no issue.
 
 
 

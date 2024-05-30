@@ -24,7 +24,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', 
+        upload_to='images/',
         default='images/Screenshot_2024-05-29_212019_h2nbja.png'
     )
     pet_name = models.CharField(max_length=100, blank=True)
@@ -37,6 +37,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.owner}'s profile"
+
 
 @property
 def friendship_count(self):
