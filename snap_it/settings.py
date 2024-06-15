@@ -122,7 +122,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://snapit-2fde1c079281.herokuapp.com'
+    'https://snapit-2fde1c079281.herokuapp.com',
+    'https://3000-pennytrain-snapit-vf55nc5c829.ws-eu114.gitpod.io',
     # Add other origins as needed
 ]
 
