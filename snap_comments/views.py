@@ -26,7 +26,7 @@ class SnapCommentList(generics.ListCreateAPIView):
     filter_backends = [
         DjangoFilterBackend,
     ]
-    filterset_field = [
+    filterset_fields = [
         'snapcomments'
     ]
 
