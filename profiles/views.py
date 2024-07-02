@@ -1,5 +1,5 @@
 from rest_framework import filters, generics
-from django.db.models import Count 
+from django.db.models import Count
 from .models import Profile
 from .serializers import ProfileSerializer
 from snap_it.permissions import IsOwnerOrReadOnly
@@ -11,7 +11,7 @@ annotations for counts of snaps, friends, and friendships, and
 supports filtering and ordering based on various fields, including
 pet attributes and friendship dates. The ProfileDetail view allows
 retrieving and updating individual profiles, restricted by the
-IsOwnerOrReadOnly permission, with the same annotations for 
+IsOwnerOrReadOnly permission, with the same annotations for
 additional profile metrics.
 """
 
@@ -20,7 +20,7 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
         snaps_count=Count('owner__snap', distinct=True),
         friended_count=Count('owner__friended', distinct=True),
-        friendship_count=Count('owner__friended__friended', distinct=True)  # Access SnapFriendship through User
+        friendship_count=Count('owner__friended__friended', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
     filter_backends = [
@@ -34,13 +34,14 @@ class ProfileList(generics.ListAPIView):
         'snaps_count',
         'friended_count',
         'friendship_count',
-        'owner__friended__friended__created_at',  # Ordering by friendship creation date
-        'owner__friended__created_at',  # Ordering by friended creation date
+        'owner__friended__friended__created_at',
+        'owner__friended__created_at',
         'pet_type',
         'pet_breed',
         'pet_age',
         'pet_name',
     ]
+
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """

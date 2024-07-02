@@ -1,8 +1,5 @@
 # Snap It API!
 ## Introdction
-## Concerns
-
-Snap It is currently not up to the standard I aspire to achieve due to a combination of time constraints and illness. Unfortunately, these factors have impacted the development process, resulting in certain aspects of the application not meeting the desired level of quality. Time constraints have limited the amount of attention and effort I could dedicate to the project, leading to compromises in various areas such as code organization, feature completeness, and user experience. Additionally, dealing with illness has further disrupted the development schedule, reducing productivity and making it challenging to focus on implementing improvements and resolving issues effectively.
 
 ### Data Models
 
@@ -235,6 +232,7 @@ Throughout the build of the Snap It API project, rigorous testing was implemente
 ---
 
 ### Python Validation
+- I used [Code Institute Python Linter](https://pep8ci.herokuapp.com/)
 1. Friendships
 - models.py
 - no errors
